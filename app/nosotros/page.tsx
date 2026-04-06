@@ -30,9 +30,9 @@ export default async function Nosotros() {
               {nosotros.title}
             </h1>
           </div>
-          <div className="prose prose-lg text-slate-700">
+          <div className="prose prose-lg text-slate-700 bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-slate-100">
             {paragraphs.map((p: string, idx: number) => (
-              <p key={idx} className="mb-6 leading-relaxed bg-white p-6 rounded-lg shadow-sm border border-slate-100">{p}</p>
+              <p key={idx} className="mb-6 leading-relaxed last:mb-0">{p}</p>
             ))}
           </div>
         </div>
