@@ -4,6 +4,10 @@ import { createTipologia, updateTipologia } from "@/app/actions/tipologias";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ITipologia } from "@/models/Tipologia";
+import dynamic from "next/dynamic";
+import "react-quill-new/dist/quill.snow.css";
+
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 export default function TipologiaForm({
   initialData,
@@ -14,6 +18,7 @@ export default function TipologiaForm({
 }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [featuresContent, setFeaturesContent] = useState(initialData?.features || "");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -84,8 +89,16 @@ export default function TipologiaForm({
         </div>
 
         <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-slate-700">Características (Especificaciones de materiales, etc)</label>
-          <textarea defaultValue={initialData?.features} name="features" rows={8} className="mt-1 block w-full rounded-xl border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary" placeholder="Soporta formato visual básico de saltos de línea..." />
+          <label className="block text-sm font-medium text-slate-700 mb-2">Características y Descripción Completa (Soporta imágenes y formato)</label>
+          <input type="hidden" name="features" value={featuresContent} />
+          <div className="bg-white rounded-xl overflow-hidden [&_.ql-editor]:min-h-[250px] [&_.ql-toolbar]:rounded-t-xl [&_.ql-container]:rounded-b-xl [&_.ql-container]:text-base [&_.ql-editor]:text-slate-600">
+            <ReactQuill 
+              theme="snow" 
+              value={featuresContent} 
+              onChange={setFeaturesContent} 
+              placeholder="Escribe la descripción completa aquí, añade texto enriquecido, listas, o inserta imágenes..."
+            />
+          </div>
         </div>
 
         <div className="sm:col-span-2 flex items-center gap-3 bg-amber-50 p-4 rounded-xl border border-amber-100">

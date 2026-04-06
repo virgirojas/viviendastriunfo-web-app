@@ -83,13 +83,10 @@ export default async function TipologiaDetailPage(props: { params: Promise<{ id:
                 </p>
 
                 {tipologia.features && (
-                  <div className="prose prose-slate max-w-none text-slate-600 prose-p:leading-8">
-                    {tipologia.features.split('\n').map((paragraph: string, idx: number) => (
-                      <p key={idx} className="mb-4 min-h-[1rem]">
-                        {paragraph}
-                      </p>
-                    ))}
-                  </div>
+                  <div 
+                    className="prose prose-slate max-w-none text-slate-600 prose-p:leading-8 prose-img:rounded-xl prose-img:shadow-lg prose-headings:mb-4"
+                    dangerouslySetInnerHTML={{ __html: tipologia.features }}
+                  />
                 )}
               </div>
             </div>
