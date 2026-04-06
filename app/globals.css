@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #8DC63F;
+  --color-brand-secondary: #808184;
+  --color-brand-accent: #000000;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: Montserrat, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
