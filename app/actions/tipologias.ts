@@ -4,22 +4,15 @@ import { revalidatePath } from "next/cache";
 import connectMongo from "@/lib/mongodb";
 import Tipologia from "@/models/Tipologia";
 import { verifyAuth } from "./auth";
-import { writeFile, mkdir } from "fs/promises";
-import { join } from "path";
+
 
 async function handleFileUpload(imageFile: File | null): Promise<string | null> {
   if (!imageFile || imageFile.size === 0) return null;
   const bytes = await imageFile.arrayBuffer();
   const buffer = Buffer.from(bytes);
-  const ext = imageFile.name.split('.').pop() || "jpg";
-  const fileName = `${Date.now()}-${Math.floor(Math.random() * 1000)}.${ext}`;
-  const uploadDir = join(process.cwd(), "public/uploads");
-  try {
-    await mkdir(uploadDir, { recursive: true });
-  } catch {}
-  const path = join(uploadDir, fileName);
-  await writeFile(path, buffer);
-  return `/uploads/${fileName}`;
+  
+  const mimeType = imageFile.type || "image/jpeg";
+  return `data:${mimeType};base64,${buffer.toString("base64")}`;
 }
 
 export async function createTipologia(formData: FormData) {
