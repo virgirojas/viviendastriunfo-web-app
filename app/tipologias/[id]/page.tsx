@@ -75,8 +75,8 @@ export default async function TipologiaDetailPage(props: { params: Promise<{ id:
         {/* Cuerpos de Detalles */}
         <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 -mt-10 relative z-20">
           <div className="grid gap-10 lg:grid-cols-3 lg:gap-16">
-            <div className="lg:col-span-2 space-y-10">
-              <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl shadow-slate-200/50 ring-1 ring-slate-100">
+            <div className="lg:col-span-2 space-y-10 min-w-0">
+              <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl shadow-slate-200/50 ring-1 ring-slate-100 overflow-hidden break-words">
                 <h2 className="text-2xl font-bold text-slate-900 mb-6 border-b border-slate-100 pb-4">Detalles de la Tipología</h2>
                 <p className="text-base sm:text-lg leading-relaxed text-slate-600 mb-8 font-medium">
                   {tipologia.description}
@@ -84,7 +84,7 @@ export default async function TipologiaDetailPage(props: { params: Promise<{ id:
 
                 {tipologia.features && (
                   <div 
-                    className="prose prose-slate max-w-none text-slate-600 prose-p:leading-8 prose-img:rounded-xl prose-img:shadow-lg prose-headings:mb-4"
+                    className="prose prose-slate max-w-none w-full text-slate-600 prose-p:leading-8 prose-img:max-w-full prose-img:h-auto prose-img:rounded-xl prose-img:shadow-lg prose-headings:mb-4"
                     dangerouslySetInnerHTML={{ __html: tipologia.features }}
                   />
                 )}
