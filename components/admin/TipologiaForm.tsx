@@ -48,7 +48,7 @@ export default function TipologiaForm({
         </div>
         
         <div className="sm:col-span-2">
-          <label className="block text-sm font-medium text-slate-700">Imagen (Sube tu archivo)</label>
+          <label className="block text-sm font-medium text-slate-700">Imagen Principal (Sube tu archivo)</label>
           <input 
             required={!initialData?.image} 
             type="file" 
@@ -59,6 +59,21 @@ export default function TipologiaForm({
           {initialData?.image && (
             <p className="mt-2 text-xs text-slate-500">
               Imagen actual: <a href={initialData.image} target="_blank" rel="noreferrer" className="text-brand-primary underline break-all">Ver imagen</a>. Sube una nueva para reemplazarla.
+            </p>
+          )}
+        </div>
+
+        <div className="sm:col-span-2">
+          <label className="block text-sm font-medium text-slate-700">Imagen del Plano (Opcional)</label>
+          <input 
+            type="file" 
+            accept="image/*" 
+            name="planImage" 
+            className="mt-1 block w-full rounded-xl border border-slate-300 px-4 py-2 text-sm outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-primary/10 file:text-brand-primary hover:file:bg-brand-primary/20" 
+          />
+          {initialData?.planImage && (
+            <p className="mt-2 text-xs text-slate-500">
+              Plano actual: <a href={initialData.planImage} target="_blank" rel="noreferrer" className="text-brand-primary underline break-all">Ver plano</a>. Sube uno nuevo para reemplazarlo.
             </p>
           )}
         </div>

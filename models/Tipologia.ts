@@ -10,6 +10,7 @@ export interface ITipologia {
   features: string;
   category: string;
   isFeatured?: boolean;
+  planImage?: string;
 }
 
 const TipologiaSchema = new Schema<ITipologia>({
@@ -22,6 +23,7 @@ const TipologiaSchema = new Schema<ITipologia>({
   features: { type: String, required: false },
   category: { type: String, required: true },
   isFeatured: { type: Boolean, default: false },
+  planImage: { type: String, required: false },
 }, {
   timestamps: true
 });

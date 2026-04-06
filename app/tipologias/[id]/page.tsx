@@ -89,6 +89,23 @@ export default async function TipologiaDetailPage(props: { params: Promise<{ id:
                   />
                 )}
               </div>
+
+              {tipologia.planImage && (
+                <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl shadow-slate-200/50 ring-1 ring-slate-100">
+                  <h2 className="text-2xl font-bold text-slate-900 mb-6 border-b border-slate-100 pb-4">Plano de la Vivienda</h2>
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-50 border border-slate-100">
+                    <Image
+                      src={tipologia.planImage}
+                      alt={`Plano de ${tipologia.name}`}
+                      fill
+                      className="object-contain p-4"
+                    />
+                  </div>
+                  <p className="mt-4 text-sm text-center text-slate-500 italic">
+                    * El plano es ilustrativo y puede variar según los requerimientos del cliente.
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Sidebar Sticky Call To Action */}
