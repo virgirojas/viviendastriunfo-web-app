@@ -29,7 +29,7 @@ export async function createReviewAction(formData: FormData): Promise<void> {
   }
 }
 
-export async function deleteReviewAction(id: string, formData?: FormData): Promise<void> {
+export async function deleteReviewAction(id: string): Promise<void> {
   try {
     await connectMongo();
     await Review.findByIdAndDelete(id);
@@ -41,7 +41,7 @@ export async function deleteReviewAction(id: string, formData?: FormData): Promi
   }
 }
 
-export async function toggleReviewActiveAction(id: string, currentStatus: boolean, formData?: FormData): Promise<void> {
+export async function toggleReviewActiveAction(id: string, currentStatus: boolean): Promise<void> {
   try {
     await connectMongo();
     await Review.findByIdAndUpdate(id, { isActive: !currentStatus });

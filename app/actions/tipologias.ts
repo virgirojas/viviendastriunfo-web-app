@@ -16,7 +16,7 @@ async function handleFileUpload(imageFile: File | null): Promise<string | null> 
   const uploadDir = join(process.cwd(), "public/uploads");
   try {
     await mkdir(uploadDir, { recursive: true });
-  } catch (e) {}
+  } catch {}
   const path = join(uploadDir, fileName);
   await writeFile(path, buffer);
   return `/uploads/${fileName}`;
@@ -50,7 +50,7 @@ export async function updateTipologia(id: string, formData: FormData) {
   await verifyAuth();
   await connectMongo();
 
-  const tipologia: any = {
+  const tipologia: Record<string, string | boolean> = {
     name: formData.get("name") as string,
     squareMeters: formData.get("squareMeters") as string,
     bedrooms: formData.get("bedrooms") as string,

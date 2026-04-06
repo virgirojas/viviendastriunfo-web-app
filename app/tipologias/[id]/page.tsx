@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ id: string }> 
   let tipologia;
   try {
     tipologia = await Tipologia.findById(params.id);
-  } catch (error) {
+  } catch {
     return { title: "Tipología no encontrada | Viviendas Triunfo" };
   }
   if (!tipologia) return { title: "Tipología no encontrada | Viviendas Triunfo" };
@@ -33,7 +33,7 @@ export default async function TipologiaDetailPage(props: { params: Promise<{ id:
   let tipologia;
   try {
     tipologia = await Tipologia.findById(params.id);
-  } catch (error) {
+  } catch {
     notFound();
   }
 
