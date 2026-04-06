@@ -28,6 +28,7 @@ export default function HeroSearch() {
           </div>
         </div>
 
+        {/* 
         <div className="justify-self-end w-full max-w-md hidden lg:block">
           <div className="rounded-none bg-black/80 backdrop-blur-md p-8 border-t-4 border-brand-primary shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
             <div className="mb-6">
@@ -83,7 +84,8 @@ export default function HeroSearch() {
               </button>
             </form>
           </div>
-        </div>
+        </div> 
+        */}
       </div>
     </section>
   );
