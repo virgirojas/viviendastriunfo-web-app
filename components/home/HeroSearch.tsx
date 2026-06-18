@@ -1,3 +1,5 @@
+import CashPaymentPromo from "@/components/home/CashPaymentPromo";
+
 export default function HeroSearch() {
   return (
     <section className="relative overflow-hidden bg-[url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat">
@@ -27,6 +29,8 @@ export default function HeroSearch() {
             </a>
           </div>
         </div>
+
+        <CashPaymentPromo variant="hero" />
 
         {/* 
         <div className="justify-self-end w-full max-w-md hidden lg:block">

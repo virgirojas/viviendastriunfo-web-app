@@ -1,5 +1,6 @@
 "use client";
 
+import CashPaymentPromo from "@/components/home/CashPaymentPromo";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -9,6 +10,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black">
+      <CashPaymentPromo variant="banner" />
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3 transition hover:opacity-80">
           <Image
