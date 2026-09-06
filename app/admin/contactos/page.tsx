@@ -1,5 +1,6 @@
 import connectMongo from "@/lib/mongodb";
 import ContactQuery from "@/models/ContactQuery";
+import { deleteContactAction } from "@/app/actions/contact";
 
 export const dynamic = "force-dynamic";
 
@@ -30,6 +31,7 @@ export default async function AdminContactosDashboard() {
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Contacto</th>
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Asunto</th>
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-slate-900">Mensaje</th>
+                    <th scope="col" className="py-3.5 pl-3 pr-4 text-right text-sm font-semibold text-slate-900 sm:pr-6">Acciones</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200 bg-white">
@@ -57,11 +59,25 @@ export default async function AdminContactosDashboard() {
                       <td className="px-3 py-4 text-sm text-slate-500 max-w-sm">
                         <p className="line-clamp-3" title={c.message}>{c.message}</p>
                       </td>
+                      <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                        <form action={deleteContactAction.bind(null, c._id.toString())}>
+                          <button
+                            type="submit"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-red-600 bg-red-50 hover:bg-red-100 transition-colors cursor-pointer"
+                            title="Eliminar consulta"
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                            Eliminar
+                          </button>
+                        </form>
+                      </td>
                     </tr>
                   ))}
                   {contactos.length === 0 && (
                     <tr>
-                      <td colSpan={5} className="py-8 text-center text-sm text-slate-500">No hay consultas de contacto recientes.</td>
+                      <td colSpan={6} className="py-8 text-center text-sm text-slate-500">No hay consultas de contacto recientes.</td>
                     </tr>
                   )}
                 </tbody>
@@ -73,3 +89,4 @@ export default async function AdminContactosDashboard() {
     </div>
   );
 }
+

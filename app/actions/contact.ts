@@ -2,6 +2,8 @@
 
 import connectMongo from "@/lib/mongodb";
 import ContactQuery from "@/models/ContactQuery";
+import { revalidatePath } from "next/cache";
+import { verifyAuth } from "./auth";
 
 export async function submitContact(formData: FormData) {
   try {
@@ -33,3 +35,15 @@ export async function submitContact(formData: FormData) {
     return { success: false, error: "Hubo un error al enviar tu consulta. Por favor, inténtalo de nuevo." };
   }
 }
+
+export async function deleteContactAction(id: string): Promise<void> {
+  try {
+    await verifyAuth();
+    await connectMongo();
+    await ContactQuery.findByIdAndDelete(id);
+    revalidatePath("/admin/contactos");
+  } catch (error) {
+    console.error("Error deleting contact query:", error);
+  }
+}
+
