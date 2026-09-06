@@ -11,12 +11,14 @@ export default function ContactoPage() {
   const [error, setError] = useState("");
   const [captchaActive, setCaptchaActive] = useState({ a: 0, b: 0 });
   const [userMath, setUserMath] = useState("");
+  const [renderedAt, setRenderedAt] = useState(0);
 
   useEffect(() => {
     setCaptchaActive({ 
       a: Math.floor(Math.random() * 10) + 1, 
       b: Math.floor(Math.random() * 10) + 1 
     });
+    setRenderedAt(Date.now());
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -40,6 +42,7 @@ export default function ContactoPage() {
         b: Math.floor(Math.random() * 10) + 1 
       });
       setUserMath("");
+      setRenderedAt(Date.now());
     } else {
       setError(response.error || "Algo salió mal.");
     }
@@ -80,7 +83,19 @@ export default function ContactoPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Honeypot anti-bot hidden field */}
+              <div style={{ position: "absolute", left: "-9999px", top: "-9999px" }} aria-hidden="true">
+                <input type="text" name="website_url_hp" tabIndex={-1} autoComplete="off" defaultValue="" />
+              </div>
+
+              {/* Security hidden fields */}
+              <input type="hidden" name="captcha_a" value={captchaActive.a} />
+              <input type="hidden" name="captcha_b" value={captchaActive.b} />
+              <input type="hidden" name="captcha_ans" value={userMath} />
+              <input type="hidden" name="rendered_at" value={renderedAt} />
+
               {error && (
+
                 <div className="rounded-xl bg-red-50 p-4 text-sm text-red-700 border border-red-100 flex items-center gap-3">
                   <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clipRule="evenodd" />
